@@ -10,6 +10,7 @@ import {
   formatDate,
 } from "../../utils/helpers";
 import { useEffect } from "react";
+import UpdateOrder from "./UpdateOrder";
 
 function Order() {
   const order = useLoaderData();
@@ -78,14 +79,15 @@ function Order() {
         ))}
       </ul>
 
-      <div className="space-y-3">
+      <div className="space-y-3 px-3 py-4 bg-sky-600 text-slate-300">
         <p>Price pizza: {formatCurrency(orderPrice)}</p>
         {priority && <p>Price priority: {formatCurrency(priorityPrice)}</p>}
         <p className="font-bold text-xl">
-          {" "}
           To pay on delivery: {formatCurrency(orderPrice + priorityPrice)}
         </p>
       </div>
+
+      {!priority && <UpdateOrder order={order} />}
     </div>
   );
 }
